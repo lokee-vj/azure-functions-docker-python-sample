@@ -5,6 +5,6 @@ pipelines:
     - step:
         name: Deploy to Azure
         script:
-          - az login --service-principal -u 053022b4-c170-408b-9a68-c4c8d8e2d5c5 -p 54132430-d3b3-46d2-999f-107fc5060e86 --tenant 58cbfaf7-429e-4e61-99dd-85a84ebdc1c6
+          - az login --service-principal -u 053022b4-c170-408b-9a68-c4c8d8e2d5c5 -p aZN8Q~crzjpyCM3xJBkKR~NlfT4TrS56PShxYaWg --tenant 58cbfaf7-429e-4e61-99dd-85a84ebdc1c6
           - az functionapp deployment source config --name magnetar --resource-group Magnetar --repo-url https://lokee-vj@bitbucket.org/lokee-vj/azure-functions-docker-python-sample.git --branch dev --manual-integration
           - az functionapp deployment source sync --name magnetar --resource-group Magnetar
