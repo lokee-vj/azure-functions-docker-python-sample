@@ -1,10 +1,11 @@
-image: mcr.microsoft.com/azure-cli:latest
-
 pipelines:
   default:
     - step:
-        name: Deploy to Azure
+        name: Sync GitHub Mirror
+        image: alpine/git:latest
+        clone:
+          enabled: false
         script:
-          - az login --service-principal -u 053022b4-c170-408b-9a68-c4c8d8e2d5c5 -p aZN8Q~crzjpyCM3xJBkKR~NlfT4TrS56PShxYaWg --tenant 58cbfaf7-429e-4e61-99dd-85a84ebdc1c6
-          - az functionapp deployment source config --name magnetar --resource-group Magnetar --repo-url https://lokee-vj@bitbucket.org/lokee-vj/azure-functions-docker-python-sample.git --branch dev --manual-integration
-          - az functionapp deployment source sync --name magnetar --resource-group Magnetar
+          - git clone --bare git@bitbucket.org:lokee-vj/azure-functions-docker-python-sample.git
+          - cd azure-functions-docker-python-sample.git
+          - git push --mirror git@github.com:lokee-vj/test-bb.git
